@@ -32,5 +32,9 @@ app.get('/notes', (req, res) => {
 
 // wildcard route for 404 page 
 
+app.get('*', (req, res) => {
+    res.status(404).sendFile(path.join(__dirname, '/public/pages/404.html'))
+})
+
 //run the server
 app.listen(PORT, console.log(`App listening at http://localhost:${PORT}`))
