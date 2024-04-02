@@ -12,7 +12,7 @@ notes.get('/', (req, res) => {
     })
 })
 
-//GET route for retrieving a specific note
+//GET route for retrieving a specific note based on its node_id
 notes.get('/:note_id', (req, res) => {
 
     const note_id = req.params.note_id
@@ -26,4 +26,23 @@ notes.get('/:note_id', (req, res) => {
         //atleast one note object that had the matching note id) and if it is > 0 then return that result array consisting of that matching note object
     })
 
+})
+
+//DELETE route for deleting a specific note based on its node_id
+notes.delete('/:note_id', (req, res) => {
+
+    const note_id = req.params.note_id
+    
+    readFromFile('./db/db.json')
+    .then((data) => {
+        json.parse(data)
+    }).then((jsonData) => {
+        result = jsonData.filter((noteObject) => noteObject.note_id !== note_id) //itterates through the notes database array and returns all the
+        //note objects that DO NOT match the note id specified in the route parameter into the 'result' array [essentially deleting that one note]
+        
+        writeToFile('./db/db.json', result) //overwriting the contents of the db with the new array of note objects (minus the deleted one)
+
+        console.info(`${note_id} note had been deleted`)
+       
+    })
 })
