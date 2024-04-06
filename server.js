@@ -1,6 +1,6 @@
 const express = require('express')
 const path = require('path')
-const db = require('./db/db.json')
+//const db = require('./db/db.json')
 const api = require('./routes/index')
 
 const PORT = process.env.port || 3001
