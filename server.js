@@ -30,10 +30,11 @@ app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, ('/public/notes.html')))
 })
 
-// wildcard route for 404 page 
+// wildcard route in case of an error, README said  -`GET *` should return the `index.html` file.
 
 app.get('*', (req, res) => {
-    res.status(404).sendFile(path.join(__dirname, '/public/pages/404.html'))
+    console.info(`${req.method} request recieved`)
+    res.sendFile(path.join(__dirname, ('/public/notes.html')))
 })
 
 //run the server
