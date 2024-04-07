@@ -25,10 +25,14 @@ Then i created a POST request for creating and saving a new note to the database
 
 ## Webpage
 
-- This is the link do my deployed application
+- This is the link do my deployed application:
+https://week-11-note-taker-challenge.onrender.com
 
--This is a screenshot of the webpage
+
+-This is a screenshot of the webpage:
+![alt text](image.png)
 
 ## Repository
 
-- This is a link to my github repo
+- This is a link to my github repo:
+https://github.com/Shukrim433/week-11-note-taker-challenge.git
