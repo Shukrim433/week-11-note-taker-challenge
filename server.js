@@ -7,7 +7,7 @@ const PORT = process.env.port || 3001
 
 const app = express()
 
-//middleware for...
+//middleware for parsing incoming request bodies in JSON and URL-encoded formats, making the data accessible in the request object.
 app.use(express.json())
 app.use(express.urlencoded({extended : true}))
 //middleware for serving static files from the 'public' directory

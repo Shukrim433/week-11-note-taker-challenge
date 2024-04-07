@@ -1,4 +1,5 @@
-const notes = require('express').Router() // imports the Router method from the express module
+const notes = require('express').Router() //imports the express framework and then accesses the Router() method and that method creates 
+//a router object which is used to define and handle routes and middleware. [i.e. notes.get means the Router() method has a get() property ect...]
 const { readFromFile, writeToFile, readAndAppend } = require('../helpers/fsUtils') //imports the readFromFile, writeToFile, and readAndAppend 
 //functions from the fsUtils module
 const { v4: uuidv4 } = require('uuid') // imports a specific function called v4 from the uuid package and renames it to uuidv4, allowing you 
