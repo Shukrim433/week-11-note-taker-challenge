@@ -1,9 +1,10 @@
 const notes = require('express').Router() //imports the express framework and then accesses the Router() method and that method creates 
 //a router object which is used to define and handle routes and middleware. [i.e. notes.get means the Router() method has a get() property ect...]
-const { readFromFile, writeToFile, readAndAppend } = require('../helpers/fsUtils') //imports the readFromFile, writeToFile, and readAndAppend 
-//functions from the fsUtils module
 const { v4: uuidv4 } = require('uuid') // imports a specific function called v4 from the uuid package and renames it to uuidv4, allowing you 
 //to generate UUIDs using uuidv4().
+const { readFromFile, writeToFile, readAndAppend } = require('../helpers/fsUtils') //imports the readFromFile, writeToFile, and readAndAppend 
+//functions from the fsUtils module
+
 
 //GET route for retrieving all the notes
 notes.get('/', (req, res) => {
@@ -40,12 +41,13 @@ notes.delete('/:note_id', (req, res) => {
         const jsonData = JSON.parse(data); // Parse the JSON data****
         return jsonData; // Return the parsed JSON data*****
     }).then((jsonData) => {
-        result = jsonData.filter((noteObject) => noteObject.id !== id) //itterates through the notes database array and returns all the
+        const result = jsonData.filter((noteObject) => noteObject.id !== id) //itterates through the notes database array and returns all the
         //note objects that DO NOT match the note id specified in the route parameter into the 'result' array [essentially deleting that one note]
 
         writeToFile('./db/db.json', result) //overwriting the contents of the db with the new array of note objects (minus the deleted one)
         
         console.info(`${id} note has been deleted`)
+        res.json('delete succesful')
     })
 })
 
@@ -59,6 +61,7 @@ notes.post('/', (req, res) => {
             id: uuidv4()
         }
         readAndAppend(newNote, './db/db.json')
+        res.json('Note added successfully')
     } else {
         res.json('Error in adding note');
     }
